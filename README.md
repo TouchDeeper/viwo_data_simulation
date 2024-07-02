@@ -7,7 +7,7 @@ Wheel speed, IMU, and camera data simulation for testing VIWO algorithms.
 - Simulate extrinsic parameters for wheel speed, IMU, and camera
 - Simulate time delays between wheel speed, IMU, and camera
 
-## 坐标系
+## Coordinate Systems
 - **O**dom frame: Wheel speed coordinate system
 
 - **B**ody frame: IMU coordinate system
@@ -22,5 +22,5 @@ Currently, the IMU's z-axis is upwards, with elliptical motion within the xy-pla
 ## Usage
 main/gener_alldata_VIW.cpp: Used to generate wheel speed data, IMU data, camera trajectory, feature point pixel coordinates, and 3D coordinates of feature points.
 
-## 感谢
+## Acknowledgements
 This tool is developed based on [vio_data_simulation](https://github.com/HeYijia/vio_data_simulation), thank you for their outstanding work.

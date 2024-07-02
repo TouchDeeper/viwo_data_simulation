@@ -1,0 +1,86 @@
+%YAML:1.0
+#time
+imu_frequency: 50
+cam_frequency: 30
+wheel_frequency: 50
+t_start: 0
+t_end: 20  #  20 s
+
+#common parameters
+imu_topic: "/imu0"
+image_topic: "/cam0/image_raw"
+output_path: "/home/wang/CLionProjects/VIO/c7/vins_sys_code/bin"
+
+#camera calibration
+model_type: PINHOLE
+camera_name: camera
+image_width: 640
+image_height: 640
+distortion_parameters:
+   k1: 0
+   k2: 0
+   p1: 0
+   p2: 0
+projection_parameters:
+   fx: 460
+   fy: 460
+   cx: 255
+   cy: 255
+
+body_R_cam: !!opencv-matrix
+   rows: 3
+   cols: 3
+   dt: d
+   data: [0, 0, -1,
+          -1, 0, 0,
+          0, 1, 0]
+#Translation from camera frame to imu frame, imu^T_cam
+body_t_cam: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [0.05,0.04, 0.03]
+
+# Extrinsic parameter between IMU and wheel.
+body_R_wheel: !!opencv-matrix
+   rows: 3
+   cols: 3
+   dt: d
+   #   data: [0, -1, 0,
+   #          0, 0, -1,
+   #          1, 0, 0]
+   data: [1, 0, 0,
+          0, 1, 0,
+          0, 0, 1]
+#Translation from camera frame to imu frame, imu^T_cam
+body_t_wheel: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [0.023, 0.730, -0.248]
+#   data: [-0.0208, 0.0290, -0.0168]
+
+#imu parameters       The more accurate parameters you provide, the better performance
+acc_n: 0.019          # accelerometer measurement noise standard deviation. #0.2   0.04
+gyr_n: 0.015         # gyroscope measurement noise standard deviation.     #0.05  0.004
+acc_w: 0.0001         # accelerometer bias random work noise standard deviation.  #0.02
+gyr_w: 1.0e-5      # gyroscope bias random work noise standard deviation.     #4.0e-5
+g_norm: 9.81007     # gravity magnitude
+# rad/s
+wheel_gyro_noise_sigma: 0.015
+#　m/s
+wheel_velocity_noise_sigma: 0.015
+# wheel intrinsic
+sx: 1.2
+sy: 1.2
+sw: 1.2
+
+pixel_noise: 1.5              # 1 pixel noise
+
+#unsynchronization parameters
+estimate_td: 0                      # online estimate time offset between camera and imu
+td: 0.0                             # initial value of time offset. unit: s. readed image clock + td = real image clock (IMU clock)
+
+#unsynchronization parameters
+estimate_td_wheel: 0                      # online estimate time offset between camera and wheel
+td_wheel: 0.0                            # initial value of time offset. unit: s. readed image clock + td = real image clock (IMU clock)

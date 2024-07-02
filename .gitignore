@@ -1,0 +1,12 @@
+cmake-build-debug
+.idea
+bin/*.txt
+bin/keyframe/
+bin/data_gen
+lib/
+*.py[cod]
+build/
+*~
+*.DS_Store
+venv
+*.pyc
